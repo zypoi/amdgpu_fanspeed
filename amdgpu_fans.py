@@ -29,7 +29,7 @@ def set_fan_speed(adapter, percent):
             f.close()
 
         pwm_gap = pwm_max - pwm_min
-        pwm = int( pwm_min + pwm_gap * float (percent/100))
+        pwm = int( float(pwm_min) + float(pwm_gap) * float (percent/100.0))
         
         system("echo 1 > pwm1_enable")
         system("echo {} > pwm1".format(pwm))
