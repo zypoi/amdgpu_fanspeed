@@ -38,7 +38,7 @@ def set_fan_speed(adapter, percent):
         with open('pwm1') as f:
             pwm_set = int(f.readline().strip('\n'))
             f.close()
-        if pwm_set == pwm:
+        if pwm_set > pwm - 6 and pwm_set < pwm + 6:
             return True
         else:
             return False
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     for adapter in adapters:
         if set_fan_speed(int(adapter), speed):
-            print "Set aapter {} to speed {}%".format(adapter, speed)
+            print "Set adapter {} to speed {}%".format(adapter, speed)
         else:
             print "Set adapter {} failed, maybe not AMD GPU".format(adapter)
 
