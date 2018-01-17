@@ -16,7 +16,8 @@ def set_fan_speed(adapter, percent):
     vendor_id = vendor_id.strip('\n')
     # check if the device is AMD GPU by vendor ID
     if vendor_id == amdgpu_vendor_id:
-        chdir('/sys/class/drm/card{}/device/hwmon/hwmon{}'.format(adapter, adapter))
+        hwmon = listdir('/sys/class/drm/card{}/device/hwmon'.format(adapter))[0]
+        chdir('/sys/class/drm/card{}/device/hwmon/{}'.format(adapter, hwmon))
         pwm_max = 0
         pwm_min = 0
         pwm = 0
